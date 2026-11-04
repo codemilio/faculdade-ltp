@@ -1,0 +1,11 @@
+# Artefatos de compilação
+build/
+*.exe
+*.o
+*.obj
+*.out
+*.stackdump
+
+# Arquivos temporários do sistema
+Thumbs.db
+.DS_Store
