@@ -1,0 +1,38 @@
+[
+  {
+    "label": "Build (Current File)",
+    "command": "$file = $env:ZED_FILE; $root = (Get-Location).Path; $relative = [System.IO.Path]::GetRelativePath($root, $file); $relativeDir = Split-Path $relative -Parent; $buildRoot = Join-Path $root 'build'; $outDir = if ([string]::IsNullOrEmpty($relativeDir)) { $buildRoot } else { Join-Path $buildRoot $relativeDir }; New-Item -ItemType Directory -Force -Path $outDir | Out-Null; $stem = [System.IO.Path]::GetFileNameWithoutExtension($file); $exe = Join-Path $outDir ($stem + '.exe'); gcc $file -o $exe",
+    "args": [],
+    "env": {},
+    "use_new_terminal": false,
+    "allow_concurrent_runs": false,
+    "reveal": "always",
+  },
+  {
+    "label": "Build and Run (Current File)",
+    "command": "$file = $env:ZED_FILE; $root = (Get-Location).Path; $relative = [System.IO.Path]::GetRelativePath($root, $file); $relativeDir = Split-Path $relative -Parent; $buildRoot = Join-Path $root 'build'; $outDir = if ([string]::IsNullOrEmpty($relativeDir)) { $buildRoot } else { Join-Path $buildRoot $relativeDir }; New-Item -ItemType Directory -Force -Path $outDir | Out-Null; $stem = [System.IO.Path]::GetFileNameWithoutExtension($file); $exe = Join-Path $outDir ($stem + '.exe'); gcc $file -o $exe; if ($LASTEXITCODE -eq 0) { & $exe }",
+    "args": [],
+    "env": {},
+    "use_new_terminal": false,
+    "allow_concurrent_runs": false,
+    "reveal": "always",
+  },
+  {
+    "label": "Build and Run Out (Current File)",
+    "command": "$file = $env:ZED_FILE; $root = (Get-Location).Path; $relative = [System.IO.Path]::GetRelativePath($root, $file); $relativeDir = Split-Path $relative -Parent; $buildRoot = Join-Path $root 'build'; $outDir = if ([string]::IsNullOrEmpty($relativeDir)) { $buildRoot } else { Join-Path $buildRoot $relativeDir }; New-Item -ItemType Directory -Force -Path $outDir | Out-Null; $stem = [System.IO.Path]::GetFileNameWithoutExtension($file); $exe = Join-Path $outDir ($stem + '.exe'); gcc $file -o $exe; if ($LASTEXITCODE -eq 0) { Start-Process -FilePath $exe -WorkingDirectory $outDir }",
+    "args": [],
+    "env": {},
+    "use_new_terminal": false,
+    "allow_concurrent_runs": false,
+    "reveal": "always",
+  },
+  {
+    "label": "Build (All)",
+    "command": "$root = (Get-Location).Path; $buildRoot = Join-Path $root 'build'; New-Item -ItemType Directory -Force -Path $buildRoot | Out-Null; Get-ChildItem -Path (Join-Path $root 'encontros') -Filter '*.c' -Recurse | ForEach-Object { $relative = [System.IO.Path]::GetRelativePath($root, $_.FullName); $relativeDir = Split-Path $relative -Parent; $outDir = if ([string]::IsNullOrEmpty($relativeDir)) { $buildRoot } else { Join-Path $buildRoot $relativeDir }; New-Item -ItemType Directory -Force -Path $outDir | Out-Null; $exe = Join-Path $outDir ($_.BaseName + '.exe'); gcc $_.FullName -o $exe; if ($LASTEXITCODE -eq 0) { Write-Output ('OK: ' + $relative) } else { Write-Output ('FALHOU: ' + $relative) } }",
+    "args": [],
+    "env": {},
+    "use_new_terminal": false,
+    "allow_concurrent_runs": false,
+    "reveal": "always",
+  },
+]
