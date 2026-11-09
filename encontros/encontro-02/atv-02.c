@@ -19,6 +19,9 @@ int main() {
             printf("Entrada invalida.\n");
             while ((c = getchar()) != '\n' && c != EOF) {
             }
+            if (feof(stdin)) {
+                break;
+            }
             opcao = -1;
             continue;
         }
@@ -33,8 +36,16 @@ int main() {
             continue;
         }
 
-        printf("Digite dois numeros: ");
-        if (scanf("%f %f", &a, &b) != 2) {
+        printf("Digite o primeiro numero: ");
+        if (scanf("%f", &a) != 1) {
+            printf("Entrada invalida.\n");
+            while ((c = getchar()) != '\n' && c != EOF) {
+            }
+            continue;
+        }
+
+        printf("Digite o segundo numero: ");
+        if (scanf("%f", &b) != 1) {
             printf("Entrada invalida.\n");
             while ((c = getchar()) != '\n' && c != EOF) {
             }
