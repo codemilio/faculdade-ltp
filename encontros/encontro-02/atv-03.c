@@ -29,7 +29,7 @@ int main() {
 
     for (i = 1; i <= qtd; i++) {
         do {
-            printf("Nota do estudante %d (0 a 10): ", i);
+            printf("Nota do estudante %d: ", i);
             if (scanf("%f", &nota) != 1) {
                 printf("Entrada invalida.\n");
                 while ((c = getchar()) != '\n' && c != EOF) {
