@@ -105,8 +105,6 @@
 
 ## Atividade 6 - Tabuadas em sequência
 
-**Duração estimada:** 40 minutos.
-
 **Objetivo:** Combinar dois laços `for`, compreendendo o funcionamento de estruturas aninhadas.
 
 **Enunciado:** Desenvolver um programa que solicite ao usuário dois números inteiros: um valor inicial e um valor final. O programa deverá apresentar a tabuada de cada número do intervalo informado, considerando os multiplicadores de 1 a 10. Por exemplo, se o intervalo informado for de 2 a 4, deverão ser apresentadas as tabuadas do 2, do 3 e do 4.
